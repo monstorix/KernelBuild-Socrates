@@ -24,12 +24,12 @@
   <project path="kernel/tests" name="kernel/tests" revision="945946db4f6f56e036288fa33026d4a921fb891c" upstream="main" dest-branch="main" />
   <project path="kernel/configs" name="kernel/configs" />
   <project path="common-modules/virtual-device" name="kernel/common-modules/virtual-device" revision="cb03117b76f832cf7aef613ee38b6b945456b641" upstream="android13-5.15" dest-branch="android13-5.15" />
-  <project path="prebuilts/clang/host/linux-x86" name="platform/prebuilts/clang/host/linux-x86" clone-depth="1" />
+  <project path="prebuilts/clang/host/linux-x86" name="platform/prebuilts/clang/host/linux-x86" clone-depth="1" remote="aosp"/>
   <project path="prebuilts/gcc/linux-x86/host/x86_64-linux-glibc2.17-4.8" name="platform/prebuilts/gcc/linux-x86/host/x86_64-linux-glibc2.17-4.8" clone-depth="1" />
-  <project path="prebuilts/build-tools" name="platform/prebuilts/build-tools" clone-depth="1" />
-  <project path="prebuilts/kernel-build-tools" name="kernel/prebuilts/build-tools" clone-depth="1" />
-  <project path="prebuilts/tradefed" name="platform/tools/tradefederation/prebuilts" revision="380f78f5d9b9ffb60974cbc75e2aa236266b5922" clone-depth="1" upstream="main" dest-branch="main" />
-  <project path="prebuilts/asuite" name="platform/prebuilts/asuite" revision="d90d0060aedfd80f2119c1db5339a093f2758926" clone-depth="1" upstream="main" dest-branch="main" />
+  <project path="prebuilts/build-tools" name="platform/prebuilts/build-tools" clone-depth="1" remote="aosp"/>
+  <project path="prebuilts/kernel-build-tools" name="kernel/prebuilts/build-tools" clone-depth="1" remote="aosp"/>
+  <project path="prebuilts/tradefed" name="platform/tools/tradefederation/prebuilts" revision="380f78f5d9b9ffb60974cbc75e2aa236266b5922" clone-depth="1" upstream="main" dest-branch="main" remote="aosp"/>
+  <project path="prebuilts/asuite" name="platform/prebuilts/asuite" revision="d90d0060aedfd80f2119c1db5339a093f2758926" clone-depth="1" upstream="main" dest-branch="main" remote="aosp"/>
   <project path="tools/mkbootimg" name="platform/system/tools/mkbootimg" />
   <project path="prebuilts/bazel/linux-x86_64" name="platform/prebuilts/bazel/linux-x86_64" clone-depth="1" />
   <project path="prebuilts/jdk/jdk11" name="platform/prebuilts/jdk/jdk11" clone-depth="1" />
