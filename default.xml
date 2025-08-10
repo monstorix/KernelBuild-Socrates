@@ -19,7 +19,7 @@
     <linkfile src="abi" dest="build/abi" />
     <linkfile src="static_analysis" dest="build/static_analysis" />
   </project>
-  <project path="common" name="los_kernel_xiaomi_sm8550" remote="github" revision="lineage-22.2" upstream="lineage-22.2" dest-branch="lineage-22.2">
+  <project path="common" name="android_kernel_xiaomi_sm8550" remote="lineage" revision="19f59c09f71b25eec74c99df0c007b6639dbb82f" upstream="lineage-22.2" dest-branch="lineage-22.2">
     <linkfile src="." dest=".source_date_epoch_dir" />
   </project>
   <project path="kernel/tests" name="kernel/tests" revision="945946db4f6f56e036288fa33026d4a921fb891c" upstream="main" dest-branch="main" />
