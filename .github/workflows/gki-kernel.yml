@@ -65,16 +65,16 @@ jobs:
       - name: Maximize Build Space
         uses: AdityaGarg8/remove-unwanted-software@v5
         with:
-          remove-dotnet: 'true'          # Frees ~2 GB
-          remove-android: 'true'         # Frees ~9 GB
-          remove-haskell: 'true'         # Frees ~5.2 GB
-          remove-codeql: 'true'          # Frees ~5.4 GB
-          remove-docker-images: 'true'   # Frees ~3.2 GB
-          remove-large-packages: 'true'  # Frees ~3.1 GB
-          remove-swapfile: 'true'        # Frees ~4 GB
-          remove-cached-tools: 'false'   # Avoid unless confirmed safe
-          verbose: 'true'                # Enable detailed logging
-          
+          remove-dotnet: "true" # Frees ~2 GB
+          remove-android: "true" # Frees ~9 GB
+          remove-haskell: "true" # Frees ~5.2 GB
+          remove-codeql: "true" # Frees ~5.4 GB
+          remove-docker-images: "true" # Frees ~3.2 GB
+          remove-large-packages: "true" # Frees ~3.1 GB
+          remove-swapfile: "true" # Frees ~4 GB
+          remove-cached-tools: "false" # Avoid unless confirmed safe
+          verbose: "true" # Enable detailed logging
+
       - name: 设定 CONFIG 环境变量
         run: |
           # Set CONFIG dynamically based on inputs values
@@ -133,8 +133,8 @@ jobs:
         env:
           BOOT_SIGN_KEY: ${{ secrets.BOOT_SIGN_KEY }}
         run: |
-            openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:2048 > ./kernel-build-tools/linux-x86/share/avb/testkey_rsa2048.pem
-            echo "BOOT_SIGN_KEY_PATH=$GITHUB_WORKSPACE/kernel-build-tools/linux-x86/share/avb/testkey_rsa2048.pem" >> $GITHUB_ENV
+          openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:2048 > ./kernel-build-tools/linux-x86/share/avb/testkey_rsa2048.pem
+          echo "BOOT_SIGN_KEY_PATH=$GITHUB_WORKSPACE/kernel-build-tools/linux-x86/share/avb/testkey_rsa2048.pem" >> $GITHUB_ENV
 
       - name: 安装仓库
         run: |
@@ -212,7 +212,7 @@ jobs:
         run: |
           branch_input="${{ inputs.kernelsu_branch }}"
           variant_input="${{ inputs.kernelsu_variant }}"
-          
+
           case "$branch_input" in
             "Stable(标准)")
               echo "BRANCH=-s susfs-main" >> $GITHUB_ENV
@@ -231,7 +231,7 @@ jobs:
               exit 1
               ;;
           esac
-          
+
       - name: 添加 KernelSU
         run: |
           echo "更改为配置目录: $CONFIG..."
@@ -245,20 +245,20 @@ jobs:
         run: |
           echo "更改为配置目录: $CONFIG..."
           cd "$CONFIG/common"
-          
+
           echo "下载并运行 Baseband-guard setup 脚本..."
           wget -O- https://github.com/vc-teahouse/Baseband-guard/raw/main/setup.sh | bash
-          
+
           echo "启用 Baseband-guard 内核配置..."
           CONFIG_FILE="arch/arm64/configs/gki_defconfig"
           echo "CONFIG_BBG=y" >> "$CONFIG_FILE"
-          
+
           # 对于 GitHub Actions 云编译，修改 LSM Kconfig
           echo "修改 security/Kconfig 以包含 baseband_guard..."
           sed -i '/^config LSM$/,/^help$/{ /^[[:space:]]*default/ { /baseband_guard/! s/lockdown/lockdown,baseband_guard/ } }' ./security/Kconfig
-          
+
           echo "Baseband-guard 配置完成"
-      
+
       - name: 为 KernelSU 变体安装 SUSFS 补丁
         run: |
           echo "更改为配置目录: $CONFIG..."
@@ -281,7 +281,7 @@ jobs:
           fi
           cd ../common
           patch -p1 --fuzz=3 < 50_add_susfs_in_gki-${{ inputs.android_version }}-${{ inputs.kernel_version }}.patch || true
-	    
+
       - name: 一些修复补丁
         run: |
           cd "$CONFIG/common"
@@ -295,7 +295,7 @@ jobs:
               fake_patched=1
             fi
           fi
-          
+
           if [ "$FORMATTED_BRANCH" = "android12-5.10" ] || [ "$FORMATTED_BRANCH" = "android13-5.10" ] || [ "$FORMATTED_BRANCH" = "android13-5.15" ]; then
             if ! grep -qxF $'\tif (!vma_pages(vma))' ./fs/proc/task_mmu.c; then
               echo "未找到 vma_pages,正在进行补丁修复"
@@ -339,7 +339,7 @@ jobs:
           if [ "${{ inputs.kernelsu_variant }}" == "SukiSU" ]; then
           cp ../../SukiSU_patch/69_hide_stuff.patch ./
           patch -p1 -F 3 < 69_hide_stuff.patch
-          
+
       - name: 复制源文件 & 应用LZ4KD & ZSTDN补丁
         if: ${{ inputs.use_zram }}
         run: |
@@ -462,7 +462,7 @@ jobs:
           echo "CONFIG_KSU_SUSFS_HIDE_KSU_SUSFS_SYMBOLS=y" >> ./common/arch/arm64/configs/gki_defconfig
           echo "CONFIG_KSU_SUSFS_SPOOF_CMDLINE_OR_BOOTCONFIG=y" >> ./common/arch/arm64/configs/gki_defconfig
           echo "CONFIG_KSU_SUSFS_OPEN_REDIRECT=y" >> ./common/arch/arm64/configs/gki_defconfig
-          
+
           # Remove check_defconfig
           sed -i 's/check_defconfig//' ./common/build.config.gki
 
@@ -476,7 +476,7 @@ jobs:
         run: |
           echo "更改为配置目录: $CONFIG..."
           cd "$CONFIG"
-          
+
           if [ ! -z ${{ inputs.version }} ]; then
             echo "版本号不为空"
             sed -i '$s|echo "\$res"|echo "${{ inputs.version }}"|' ./common/scripts/setlocalversion
@@ -497,7 +497,7 @@ jobs:
           if [ "${{ inputs.kernel_version }}" = "6.1" ] || [ "${{ inputs.kernel_version }}" = "6.6" ]; then
             sed -i -e "s|\$(preempt-flag-y) \"\$(build-timestamp)\"|\$(preempt-flag-y) \"$CURRENT_TIME\"|" ./common/init/Makefile
           fi
-          
+
           if [ -f "build/build.sh" ]; then
             sed -i 's/-dirty//' ./common/scripts/setlocalversion
           else
