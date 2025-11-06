@@ -13,12 +13,30 @@ on:
       kernelsu_variant:
         required: true
         type: string
+        default: Next
       kernelsu_branch:
         required: true
         type: string
-      kernelsu_branch_other:
+        default: Stable
+      version:
         required: false
         type: string
+        default: ""
+      use_zram:
+        description: '是否开启增加更多ZRAM算法?'
+        required: true
+        type: boolean
+        default: true
+      use_kpm:
+        description: '是否开启KPM功能?'
+        required: true
+        type: boolean
+        default: true
+      BBG:
+        description: '是否启用内核层面阻止对关键分区/设备节点的非法写入(LSM)？'
+        required: true
+        type: boolean
+        default: false
   
 jobs:
   build-kernel-a13-5-15-kernelsu-susfs:
@@ -53,11 +71,15 @@ jobs:
     uses: ./.github/workflows/gki-kernel.yml
     secrets: inherit
     with:
-      make_release: ${{ inputs.make_release }}
+      make_release: ${{ inputs.make_release || false }}
       android_version: "android13"
       kernel_version: "5.15"
       sub_level: ${{ matrix.sub_level }}
       os_patch_level: ${{ matrix.os_patch_level }}
-      kernelsu_variant: ${{ inputs.kernelsu_variant }}
-      kernelsu_branch: ${{ inputs.kernelsu_branch }}
-      kernelsu_branch_other: ${{ inputs.kernelsu_branch_other }}
+      kernelsu_variant: ${{ inputs.kernelsu_variant || 'Next' }}
+      kernelsu_branch: ${{ inputs.kernelsu_branch || 'Dev' }}
+      version: ${{ inputs.version || '' }}
+      use_zram: ${{ inputs.use_zram }}
+      use_kpm: ${{ inputs.use_kpm }}
+      supp_op: ${{ inputs.supp_op || false }}
+      BBG: ${{ inputs.BBG || false }}
