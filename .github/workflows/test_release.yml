@@ -287,7 +287,7 @@ jobs:
           elif [[ "${{ inputs.kernelsu_branch }}" == "Stable(标准)" && "${{ inputs.kernelsu_variant }}" != "MKSU" ]]; then
             KSU_REPO_URL=""
             if [ "${{ inputs.kernelsu_variant }}" == "SukiSU" ]; then
-              KSU_REPO_URL="https://github.com/ShirkNeko/KernelSU.git"
+              KSU_REPO_URL="https://github.com/SukiSU-Ultra/SukiSU-Ultra.git"
             fi
             
             if [ -n "$KSU_REPO_URL" ]; then
@@ -303,7 +303,7 @@ jobs:
           KSU_REPO_URL=""
           KSU_REPO_URL2=""
           if [ "${{ inputs.kernelsu_variant }}" == "SukiSU" ]; then
-            KSU_REPO_URL="https://github.com/ShirkNeko/KernelSU.git"
+            KSU_REPO_URL="https://github.com/SukiSU-Ultra/SukiSU-Ultra.git"
             KSU_REPO_URL2="ShirkNeko/KernelSU"
           else
             echo "Warning: Unknown KernelSU variant selected. Defaulting to Official for URL generation."
