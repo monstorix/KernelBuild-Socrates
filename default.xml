@@ -3,7 +3,7 @@
   <remote name="aosp" fetch="https://android.googlesource.com/" review="https://android-review.googlesource.com/" />
   <remote name="github" fetch="https://github.com/monstorix/"/>
   <default revision="master-kernel-build-2022" remote="aosp" sync-j="4" />
-  <superproject name="kernel/superproject" remote="aosp" revision="common-android13-5.15-2025-05" />
+  <superproject name="kernel/superproject" remote="aosp" revision="common-android13-5.15-2025-07" />
   <project path="build/kernel" name="kernel/build">
     <linkfile src="kleaf/bazel.sh" dest="tools/bazel" />
     <linkfile src="kleaf/bazel.WORKSPACE" dest="WORKSPACE" />
@@ -18,7 +18,7 @@
     <linkfile src="abi" dest="build/abi" />
     <linkfile src="static_analysis" dest="build/static_analysis" />
   </project>
-  <project path="common" name="common" remote="github" revision="android13-5.15-2025-05" upstream="android13-5.15-2025-05" dest-branch="android13-5.15-2025-05">
+  <project path="common" name="common" remote="github" revision="android13-5.15-2025-07" upstream="android13-5.15-2025-07" dest-branch="android13-5.15-2025-07">
     <linkfile src="." dest=".source_date_epoch_dir" />
   </project>
   <project path="kernel/tests" name="kernel/tests" revision="945946db4f6f56e036288fa33026d4a921fb891c" upstream="main" dest-branch="main" />
