@@ -90,6 +90,7 @@ jobs:
       version: ${{ inputs.version }}
       use_zram: ${{ inputs.use_zram }}
       use_kpm: ${{ inputs.use_kpm }}
+      set_defbbr: ${{ inputs.set_defbbr }}
       BBG: ${{ inputs.BBG }}
 
 
