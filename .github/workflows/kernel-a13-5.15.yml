@@ -87,4 +87,5 @@ jobs:
       use_zram: ${{ inputs.use_zram }}
       use_kpm: ${{ inputs.use_kpm }}
       supp_op: ${{ inputs.supp_op || false }}
+      set_defbbr: ${{ inputs.set_defbbr || false }}
       BBG: ${{ inputs.BBG || false }}
