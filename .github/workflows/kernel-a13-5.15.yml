@@ -32,6 +32,11 @@ on:
         required: true
         type: boolean
         default: true
+      set_defbbr:
+        description: '是否启用BBR拥塞算法(实验性)？'
+        required: true
+        type: boolean
+        default: false
       BBG:
         description: '是否启用内核层面阻止对关键分区/设备节点的非法写入(LSM)？'
         required: true
