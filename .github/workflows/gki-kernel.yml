@@ -49,6 +49,10 @@ on:
         required: true
         type: boolean
         default: false
+      set_defbbr:
+        required: true
+        type: boolean
+        default: false
       BBG:
         required: true
         type: boolean
