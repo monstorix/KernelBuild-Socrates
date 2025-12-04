@@ -223,7 +223,7 @@ jobs:
               ;;
             "Dev(开发)")
               case "$variant_input" in
-                "SukiSU")           echo "BRANCH=-s dev" >> $GITHUB_ENV ;;
+                "SukiSU")           echo "BRANCH=-s builtin" >> $GITHUB_ENV ;;
                 *) 
                   echo "错误：未定义开发分支的变体 '$variant_input'" >&2
                   exit 1
@@ -332,8 +332,8 @@ jobs:
             patch -p1 -F 3 < scope_min_manual_hooks_v1.4.patch
           elif [ "${{ inputs.kernelsu_variant }}" == "SukiSU" ]; then
             echo "Applying hooks for SukiSU..."
-            cp ../../SukiSU_patch/hooks/scope_min_manual_hooks_v1.6.patch ./
-            patch -p1 -F 3 < scope_min_manual_hooks_v1.6.patch
+            #cp ../../SukiSU_patch/hooks/scope_min_manual_hooks_v1.6.patch ./
+            #patch -p1 -F 3 < scope_min_manual_hooks_v1.6.patch
           fi
 
       - name: 复制源文件 & 应用LZ4KD & ZSTDN补丁
@@ -432,7 +432,8 @@ jobs:
           echo "CONFIG_KSU=y" >> ./common/arch/arm64/configs/gki_defconfig
           echo "CONFIG_KPM=y" >> ./common/arch/arm64/configs/gki_defconfig
           echo "CONFIG_KSU_SUSFS_SUS_SU=n" >> ./common/arch/arm64/configs/gki_defconfig
-          echo "CONFIG_KSU_MANUAL_HOOK=y" >> ./common/arch/arm64/configs/gki_defconfig
+          
+          # echo "CONFIG_KSU_MANUAL_HOOK=y" >> ./common/arch/arm64/configs/gki_defconfig
 
           # Add additional tmpfs config setting
           echo "CONFIG_TMPFS_XATTR=y" >> ./common/arch/arm64/configs/gki_defconfig
