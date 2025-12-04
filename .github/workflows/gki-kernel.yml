@@ -219,11 +219,11 @@ jobs:
 
           case "$branch_input" in
             "Stable(标准)")
-              echo "BRANCH=-s susfs-main" >> $GITHUB_ENV
+              echo "BRANCH=-s builtin" >> $GITHUB_ENV
               ;;
             "Dev(开发)")
               case "$variant_input" in
-                "SukiSU")           echo "BRANCH=-s susfs-test" >> $GITHUB_ENV ;;
+                "SukiSU")           echo "BRANCH=-s dev" >> $GITHUB_ENV ;;
                 *) 
                   echo "错误：未定义开发分支的变体 '$variant_input'" >&2
                   exit 1
