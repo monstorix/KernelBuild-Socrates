@@ -223,7 +223,7 @@ jobs:
               ;;
             "Dev(开发)")
               case "$variant_input" in
-                "SukiSU")           echo "BRANCH=-s dev" >> $GITHUB_ENV ;;
+                "SukiSU")           echo "BRANCH=-s builtin" >> $GITHUB_ENV ;;
                 *) 
                   echo "错误：未定义开发分支的变体 '$variant_input'" >&2
                   exit 1
